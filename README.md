@@ -13,3 +13,11 @@ jntpdn --port 80 --file /some/where/my-file --log ./output.log
 * fork
 * test
 * pull request (or not)
+
+### What's needed?
+
+* dep
+
+```
+go get -u github.com/golang/dep/cmd/dep
+```
