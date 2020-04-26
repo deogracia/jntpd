@@ -4,12 +4,19 @@
 ## Usage
 
 ```
-jntpdn --port 80 --file /some/where/my-file --log ./output.log
-
+jntpdn --port 80 --file /where/my/file/is
 ```
+
+### Options
+* `--log (./output.log)`: output log into a file, named ./output.log  by default
+
 
 ## Contribution
 
 * fork
 * test
 * pull request (or not)
+
+## License
+
+See [LICENSE](./LICENSE)
