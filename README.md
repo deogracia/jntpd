@@ -17,6 +17,12 @@ jntpdn --port 80 --file /where/my/file/is
 * test
 * pull request (or not)
 
+### Development's dependancies
+
+* [gosec](https://github.com/securego/gosec)
+* Make
+
+
 ## License
 
 See [LICENSE](./LICENSE)
