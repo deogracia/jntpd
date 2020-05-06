@@ -12,7 +12,7 @@ endif
 .PHONY: all build
 
 all: build
-	echo build!
+	@echo "[OK] Build done!"
 
 build:
 	$(info ***************** Build the artefacts ***********************************)

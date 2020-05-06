@@ -1,9 +1,9 @@
 OUTPUT="./output"
 SRC=$(shell find . -name "*.go")
 
-.PHONY: all clean build test check_fmt fmt vet
+.PHONY: all clean build test check_fmt fmt vet security
 
-all: clean install_deps test build
+all: clean install_deps security test build
 
 output:
 	$(info ***************** Create "output" directory ***********************************)
@@ -12,6 +12,11 @@ output:
 clean:
 	$(info ***************** Clean ***********************************)
 	rm -rf $(OUTPUT)
+
+security:
+	$(info ***************** Security ***********************************)
+	@gosec ./...
+	@echo "[OK] Go security check is done!"
 
 build: output
 	make -f build.make all
@@ -22,11 +27,13 @@ test: check_fmt vet
 
 install_deps:
 	$(info ***************** Install dependancies ***********************************)
-	go get ./...
+	@go get ./...
+	@echo "[OK] Go dependancies is get!"
 
 check_fmt:
 	$(info ***************** Check formatting ***********************************)
 	@test -z $(shell gofmt -l $(SRC)) || (gofmt -d $(SRC); exit 1)
+	@echo "[OK] Go code formating"
 
 fmt:
 	$(info ***************** Do the formatting ***********************************)
@@ -34,4 +41,7 @@ fmt:
 
 vet:
 	$(info ***************** Run go vet ***********************************)
-	go vet ./...
+	@go vet ./...
+	@echo "[OK] Go vet is done!"
+
+# vi:syntax=make

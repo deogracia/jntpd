@@ -19,6 +19,12 @@ jntpdn --port 80 --file /where/my/file/is
 * test
 * pull request (or not)
 
+### Development's dependancies
+
+* [gosec](https://github.com/securego/gosec)
+* Make
+
+
 ## License
 See [LICENSE](./LICENSE)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdeogracia%2Fjntpdn.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdeogracia%2Fjntpdn?ref=badge_large)
