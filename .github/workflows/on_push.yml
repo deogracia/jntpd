@@ -9,6 +9,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: Get go deps
+      run:  make install_deps
     - name: Check go code fmt
       run:  make check_fmt
     - name: Check go vet
