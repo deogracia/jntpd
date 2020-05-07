@@ -1,0 +1,14 @@
+name: Checks on_push
+
+on: [push]
+
+jobs:
+  checks:
+    name: run some checks
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Check go code fmt
+      run:  make check_fmt
+    - name: Check go vet
+      run:  make vet
+      
