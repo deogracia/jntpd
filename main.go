@@ -11,5 +11,6 @@ package main
 import "github.com/deogracia/jntpdn/cmd"
 
 func main() {
-	cmd.Execute()
+	cmd.Execute(
+  )
 }
