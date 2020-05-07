@@ -12,6 +12,7 @@ jobs:
           env
           pwd
           ls -lha
+          ls -lha ..
     - name: Check go code fmt
       run:  make check_fmt
     - name: Check go vet
