@@ -10,9 +10,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Get go deps
-      run:  make install_deps
+      run:  |
+          make install_deps
+          go get github.com/securego/gosec/cmd/gosec
     - name: Check go code fmt
       run:  make check_fmt
     - name: Check go vet
       run:  make vet
+    - name: Run gosec
+      run:  make security
       
