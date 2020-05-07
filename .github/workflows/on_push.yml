@@ -7,13 +7,8 @@ jobs:
     name: run some checks
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
-    - name: where am I
-      run:  |
-          env
-          pwd
-          ls -lha
-          ls -lha ..
+    - name: Checkout code
+      uses: actions/checkout@v2
     - name: Check go code fmt
       run:  make check_fmt
     - name: Check go vet
