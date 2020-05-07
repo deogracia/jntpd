@@ -7,6 +7,11 @@ jobs:
     name: run some checks
     runs-on: ubuntu-18.04
     steps:
+    - name: where am I
+      run:  |
+          env
+          pwd
+          ls -lha
     - name: Check go code fmt
       run:  make check_fmt
     - name: Check go vet
