@@ -13,7 +13,7 @@ jobs:
       run:  |
           make install_deps
           go install -i github.com/securego/gosec/cmd/gosec
-          ls -lhR
+          ls -lhR ..
     - name: Check go code fmt
       run:  make check_fmt
     - name: Check go vet
