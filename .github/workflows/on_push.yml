@@ -12,7 +12,7 @@ jobs:
     - name: Get go deps
       run:  |
           make install_deps
-          cd .. && go install -i github.com/securego/gosec/cmd/gosec
+          go install -i github.com/securego/gosec/cmd/gosec
     - name: Check go code fmt
       run:  make check_fmt
     - name: Check go vet
