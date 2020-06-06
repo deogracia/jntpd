@@ -12,6 +12,7 @@ output:
 clean:
 	$(info ***************** Clean ***********************************)
 	rm -rf $(OUTPUT)
+	go clean -cache -testcache -modcache
 
 security:
 	$(info ***************** Security ***********************************)
