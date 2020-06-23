@@ -3,7 +3,7 @@ build: off
 
 clone_folder: c:\gopath\src\github.com\$username\$project
 
-environement:
+environment:
   GOPATH: c:\gopath
 
 stack: go 1.13.10
