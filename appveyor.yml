@@ -1,7 +1,7 @@
 ---
 build: off
 
-clone_folder: c:\gopath\src\github.com\$APPVEYOR_ACCOUNT_NAME\$APPVEYOR_PROJECT_NAME
+clone_folder: c:\gopath\src\github.com\%APPVEYOR_ACCOUNT_NAME%\%APPVEYOR_PROJECT_NAME%
 
 environment:
   GOPATH: c:\gopath
