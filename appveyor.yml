@@ -17,6 +17,7 @@ platform:
 before_test:
 #  - choco install make
   - setx path "%path%;C:\cygwin64\bin"
+  - echo "%path%"
   - make install_deps
   - go install -i github.com/securego/gosec/cmd/gosec
 
