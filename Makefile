@@ -16,7 +16,7 @@ clean:
 
 security:
 	$(info ***************** Security ***********************************)
-	@~/go/bin/gosec ./...
+	@gosec ./...
 	@echo "[OK] Go security check is done!"
 
 build: output
