@@ -15,8 +15,9 @@ platform:
   - x64
 
 before_test:
-  - choco install make
-  - make install_deps
+#  - choco install make
+  - dir C:\cygwin64
+  - C:\cygwin64\make install_deps
   - go install -i github.com/securego/gosec/cmd/gosec
 
 test_script:
