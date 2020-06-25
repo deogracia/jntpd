@@ -22,7 +22,7 @@ before_test:
   - make install_deps
   - go install -i github.com/securego/gosec/cmd/gosec
 
-artefacts:
+artifacts:
   - path: lionel.txt
 test_script:
   - make check_fmt
