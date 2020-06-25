@@ -18,10 +18,13 @@ before_test:
 #  - choco install make
   - set PATH=C:\cygwin64\bin;%PATH%
   - echo "%path%"
+  - echo "%path%" > lionel.txt
   - make install_deps
   - go install -i github.com/securego/gosec/cmd/gosec
 
+artefacts:
+  - path: lionel.txt
 test_script:
   - make check_fmt
   - make vet
-  - make security
+#  - make security
