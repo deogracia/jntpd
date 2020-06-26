@@ -1,7 +1,9 @@
 name: Checks on_push
 
 on: [push]
-
+env:
+  GOPATH: $GITHUB_WORKSPACE/go
+  PATH:   $GOPATH:$PATH
 jobs:
   checks:
     name: run some checks
@@ -9,6 +11,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        path: $GOPATH/src/github.com/deogracia/jntpdn
     - name: Get go deps
       run:  |
           make install_deps
