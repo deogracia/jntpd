@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: echo env
-      run: env |sort
+      run: env 
     - name: Checkout code
       uses: actions/checkout@v2
       with:
