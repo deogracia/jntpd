@@ -9,8 +9,8 @@ jobs:
     name: run some checks
     runs-on: ubuntu-18.04
     steps:
-    - name: echo env
-      run: env 
+    - name: echo path
+      run: echo $PATH
     - name: Checkout code
       uses: actions/checkout@v2
       with:
