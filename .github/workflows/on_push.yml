@@ -24,7 +24,7 @@ jobs:
         path: $checkout_dir
     - name: Get go deps
       run:  |
-          cd $checkout_dir
+          cd $GITHUB_WORKSPACE/$checkout_dir
           make install_deps
           go install -i github.com/securego/gosec/cmd/gosec
     - name: Check go code fmt
