@@ -1,0 +1,30 @@
+---
+build: off
+
+clone_folder: c:\gopath\src\github.com\%APPVEYOR_ACCOUNT_NAME%\%APPVEYOR_PROJECT_NAME%
+
+environment:
+  GOPATH: c:\gopath
+
+stack: go 1.13.10
+
+image: Visual Studio 2019
+
+platform:
+  - x86
+  - x64
+
+before_test:
+#  - choco install make
+  - set PATH=C:\cygwin64\bin;%PATH%
+  - echo "%path%"
+  - echo "%path%" > lionel.txt
+  - make install_deps
+  - go install -i github.com/securego/gosec/cmd/gosec
+
+artifacts:
+  - path: lionel.txt
+test_script:
+  - make check_fmt
+  - make vet
+#  - make security

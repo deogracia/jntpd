@@ -1,0 +1,36 @@
+name: Checks on_push
+
+on: [push]
+env:
+  checkout_dir: "go/src/github.com/deogracia/jntpdn"
+jobs:
+  checks:
+    name: run some checks
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Define and add GOPATH to PATH
+      run: |
+          echo "::set-env name=GOPATH::${GITHUB_WORKSPACE}/go"
+          echo "::add-path::${GITHUB_WORKSPACE}/go/bin"
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        path: "${{env.checkout_dir}}"
+    - name: Get go deps
+      run:  |
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          make install_deps
+          go install -i github.com/securego/gosec/cmd/gosec
+    - name: Check go code fmt
+      run:  |
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          make check_fmt
+    - name: Check go vet
+      run:  |
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          make vet
+    - name: Run gosec
+      run:  |
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          make security
+      
