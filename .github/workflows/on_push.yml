@@ -20,15 +20,19 @@ jobs:
         path: "${{env.checkout_dir}}"
     - name: Get go deps
       run:  |
-          echo $PATH
-          ls -lhar $GITHUB_WORKSPACE
           cd $GITHUB_WORKSPACE/$checkout_dir
           make install_deps
           go install -i github.com/securego/gosec/cmd/gosec
     - name: Check go code fmt
-      run:  make check_fmt
+      run:  |
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          make check_fmt
     - name: Check go vet
-      run:  make vet
+      run:  |
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          make vet
     - name: Run gosec
-      run:  make security
+      run:  |
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          make security
       
