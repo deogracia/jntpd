@@ -12,6 +12,9 @@ jobs:
         go-version: ['1.13.10']
         arch:       [amd64, '386']
     steps:
+    - name: Define GOARCH
+      run: |
+          echo "::set-env name=GOARCH::${{matrix.arch}}"
     - name: setup go
       uses: actions/setup-go@v2
       with:
@@ -20,9 +23,6 @@ jobs:
       run: |
           echo "::set-env name=GOPATH::${GITHUB_WORKSPACE}/go"
           echo "::add-path::${GITHUB_WORKSPACE}/go/bin"
-    - name: Define GOARCH
-      run: |
-          echo "::set-env name=GOARCH::${{matrix.arch}}"
     - name: Checkout code
       uses: actions/checkout@v2
       with:
