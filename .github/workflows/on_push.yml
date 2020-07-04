@@ -10,7 +10,7 @@ jobs:
     name: run some checks
     runs-on: ubuntu-18.04
     steps:
-    - name: Define and add GOPATH top PATH
+    - name: Define and add GOPATH to PATH
       run: |
           echo "::set-env name=GOPATH::${GITHUB_WORKSPACE}/go"
           echo "::add-path::${GITHUB_WORKSPACE}/go/bin"
