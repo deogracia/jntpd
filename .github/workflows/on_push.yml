@@ -13,7 +13,7 @@ jobs:
     - name: Define and add GOPATH top PATH
       run: |
           echo "::set-env name=GOPATH::${GITHUB_WORKSPACE}/go"
-          echo "::add-path::${GITHUB_WORKSPACE/go/bin"
+          echo "::add-path::${GITHUB_WORKSPACE}/go/bin"
     - name: Checkout code
       uses: actions/checkout@v2
       with:
