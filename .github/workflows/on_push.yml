@@ -1,7 +1,8 @@
 name: Checks on_push
 
 on: [push]
-#env:
+env:
+  checkout_dir: "go/src/github.com/deogracia/jntpdn"
 #  GOPATH: "$GITHUB_WORKSPACE/go"
 #  PATH:   "$GOPATH:$PATH"
 jobs:
@@ -9,8 +10,6 @@ jobs:
     name: run some checks
     runs-on: ubuntu-18.04
     steps:
-    - name: echo path 1
-      run: echo $PATH
     - name: Define and add GOPATH top PATH
       run: |
           echo "::set-env name=GOPATH::${GITHUB_WORKSPACE}/go"
@@ -22,9 +21,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       with:
-        path: "$GOPATH/src/github.com/deogracia/jntpdn"
+        path: $checkout_dir
     - name: Get go deps
       run:  |
+          cd $checkout_dir
           make install_deps
           go install -i github.com/securego/gosec/cmd/gosec
     - name: Check go code fmt
