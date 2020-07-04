@@ -1,9 +1,9 @@
 name: Checks on_push
 
 on: [push]
-env:
-  GOPATH: "$GITHUB_WORKSPACE/go"
-  PATH:   "$GOPATH:$PATH"
+#env:
+#  GOPATH: "$GITHUB_WORKSPACE/go"
+#  PATH:   "$GOPATH:$PATH"
 jobs:
   checks:
     name: run some checks
@@ -11,14 +11,14 @@ jobs:
     steps:
     - name: echo path 1
       run: echo $PATH
-#    - name: Define and add GOPATH top PATH
-#      run: |
-#          echo "::set-env name=GOPATH::${GITHUB_WORKSPACE}/go"
-#          echo "::add-path::${GOPATH}/bin"
-#          echo ${GOPATH}
-#          echo ${PATH}
-#    - name: echo path 2
-#      run: echo $PATH
+    - name: Define and add GOPATH top PATH
+      run: |
+          echo "::set-env name=GOPATH::${GITHUB_WORKSPACE}/go"
+          echo "::add-path::${GOPATH}/bin"
+          echo ${GOPATH}
+          echo ${PATH}
+    - name: echo path 2
+      run: echo $PATH
     - name: Checkout code
       uses: actions/checkout@v2
       with:
