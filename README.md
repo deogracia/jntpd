@@ -6,9 +6,12 @@
 ## Usage
 
 ```
-jntpdn --port 80 --file /some/where/my-file --log ./output.log
-
+jntpdn --port 80 --file /where/my/file/is
 ```
+
+### Options
+* `--log (./output.log)`: output log into a file, named ./output.log  by default
+
 
 ## Contribution
 
@@ -16,5 +19,15 @@ jntpdn --port 80 --file /some/where/my-file --log ./output.log
 * test
 * pull request (or not)
 
+### Development's dependancies
+
+* [gosec](https://github.com/securego/gosec)
+* [gox](https://github.com/mitchellh/gox)
+* Make
+
+
 ## License
+
+See [LICENSE](./LICENSE)
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fdeogracia%2Fjntpdn.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fdeogracia%2Fjntpdn?ref=badge_large)
