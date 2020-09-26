@@ -1,5 +1,7 @@
-XC_OS="linux darwin windows"
+XC_OS="linux windows"
 XC_ARCH="amd64 386"
+XC_DARWIN="darwin"
+XC_DARWIN_ARCH="amd64"
 XC_PARALLEL="2"
 OUTPUT="./output"
 NAME="jntpdn"
@@ -19,6 +21,13 @@ build:
 	gox \
 		-os=$(XC_OS) \
 		-arch=$(XC_ARCH) \
+		-parallel=$(XC_PARALLEL) \
+		-output=$(OUTPUT)/$(NAME)_{{.OS}}_{{.Arch}} \
+		;
+
+	gox \
+		-os=$(XC_DARWIN) \
+		-arch=$(XC_DARWIN_ARCH) \
 		-parallel=$(XC_PARALLEL) \
 		-output=$(OUTPUT)/$(NAME)_{{.OS}}_{{.Arch}} \
 		;
