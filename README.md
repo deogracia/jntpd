@@ -22,7 +22,7 @@ jntpdn --port 80 --file /where/my/file/is
 ### Development's dependancies
 
 * [gosec](https://github.com/securego/gosec)
-* [gox](https://github.com/mitchellh/gox)
+* [goreleaser](https://github.com/goreleaser/goreleaser) v0.145.0
 * Make
 
 
