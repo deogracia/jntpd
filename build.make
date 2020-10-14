@@ -1,4 +1,4 @@
-XC_OS="linux windows"
+XC_OS="linux windows freebsd"
 XC_ARCH="amd64 386"
 XC_DARWIN="darwin"
 XC_DARWIN_ARCH="amd64"
