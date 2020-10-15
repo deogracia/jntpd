@@ -1,6 +1,11 @@
 name: Checks on_push
 
-on: [push]
+on:
+  push:
+    branches:
+      - "*"
+    tags:
+      - "!v*.*.*"
 env:
   checkout_dir: "go/src/github.com/deogracia/jntpdn"
 jobs:
