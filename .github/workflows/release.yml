@@ -1,0 +1,19 @@
+---
+name: Release it!
+on:
+  push:
+    tags:
+      - v*.*.*
+jobs:
+  goreleaser:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Unshallow fetch
+        run:  git fetch --prune --unshallow
+      - name: Relase via goreleaser
+        uses: goreleaser/goreleaser@v2.2.1
+        with:
+          args: release
+        env:
+          GITHUB_TOKEN: ${{ GITHUB_TOKEN }}

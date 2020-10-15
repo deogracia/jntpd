@@ -12,3 +12,5 @@
 
 # Project output directory
 output
+# goreleaser output directory
+dist
