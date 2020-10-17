@@ -15,13 +15,14 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
+        include:
+          - os: windows-latest
+            GOPATH: c:\gopath
     steps:
     - name: Windows - Define and add GOPATH to PATH
       if: ${{ matrix.os == 'windows-latest' }}
-      env:
-        GOPATH: c:\gopath
       run: |
-          set PATH=c:\gopath;%PATH%
+          setx PATH "$env:path;c:\gopath\bin" -m
     - name: Non Windows - Define and add GOPATH to PATH
       if: ${{ matrix.os != 'windows-latest' }}
       run: |
