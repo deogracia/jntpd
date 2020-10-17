@@ -16,7 +16,14 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
     steps:
-    - name: Define and add GOPATH to PATH
+    - name: Windows - Define and add GOPATH to PATH
+      if: ${{ matrix.os == 'windows-latest' }}
+      env:
+        GOPATH: c:\gopath
+      run: |
+          set PATH=c:\gopath;%PATH%
+    - name: Non Windows - Define and add GOPATH to PATH
+      if: ${{ matrix.os != 'windows-latest' }}
       run: |
           echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
           echo "${GITHUB_WORKSPACE}/go/bin" >> ${GITHUB_PATH}
