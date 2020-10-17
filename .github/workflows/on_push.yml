@@ -11,7 +11,10 @@ env:
 jobs:
   checks:
     name: run some checks
-    runs-on: ubuntu-18.04
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
     steps:
     - name: Define and add GOPATH to PATH
       run: |
