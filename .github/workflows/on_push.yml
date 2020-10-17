@@ -40,8 +40,8 @@ jobs:
       run:  |
           cd $GITHUB_WORKSPACE/$checkout_dir
           dir env: || env
-          go install -i github.com/securego/gosec/cmd/gosec
-          go install -i github.com/mitchellh/gox
+          GO111MODULE=off go install -i github.com/securego/gosec/cmd/gosec
+          GO111MODULE=off go install -i github.com/mitchellh/gox
           make ci
     - name: Build BSD artefacts
       run: |
