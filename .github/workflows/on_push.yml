@@ -21,21 +21,12 @@ jobs:
       uses: actions/checkout@v2
       with:
         path: "${{env.checkout_dir}}"
-    - name: Get go deps
+    - name: Run ci target
       run:  |
           cd $GITHUB_WORKSPACE/$checkout_dir
-          make install_deps
-          go install -i github.com/securego/gosec/cmd/gosec
-    - name: Check go code fmt
-      run:  |
+          #go install -i github.com/securego/gosec/cmd/gosec
+          make ci
+    - name: Build BSD artefacts
+      run: |
           cd $GITHUB_WORKSPACE/$checkout_dir
-          make check_fmt
-    - name: Check go vet
-      run:  |
-          cd $GITHUB_WORKSPACE/$checkout_dir
-          make vet
-    - name: Run gosec
-      run:  |
-          cd $GITHUB_WORKSPACE/$checkout_dir
-          make security
-      
+          make build_bsd
