@@ -35,7 +35,7 @@ jobs:
     - name: Run ci target
       run:  |
           cd $GITHUB_WORKSPACE/$checkout_dir
-          dir env:
+          dir env: || env
           go install -i github.com/securego/gosec/cmd/gosec
           go install -i github.com/mitchellh/gox
           make ci
