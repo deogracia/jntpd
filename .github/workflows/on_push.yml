@@ -24,7 +24,7 @@ jobs:
     - name: Run ci target
       run:  |
           cd $GITHUB_WORKSPACE/$checkout_dir
-          #go install -i github.com/securego/gosec/cmd/gosec
+          go install -i github.com/securego/gosec/cmd/gosec
           make ci
     - name: Build BSD artefacts
       run: |
