@@ -24,7 +24,12 @@ jobs:
     - name: Windows - Define and add GOPATH to PATH
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
-          [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\gopath\bin", [EnvironmentVariableTarget]::Machine)
+          $AddedLocation ="c:\gopath\bin"
+          $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
+          $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
+          $NewPath= $AddedLocation + ';' + $OldPath
+          Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
+#          [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\gopath\bin", [EnvironmentVariableTarget]::Machine)
 #          setx PATH "$env:path;c:\gopath\bin" -m
 #          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
 #          echo "c:\gopath\bin" >> ${GITHUB_PATH}
