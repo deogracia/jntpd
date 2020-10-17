@@ -38,7 +38,7 @@ jobs:
         path: "${{env.checkout_dir}}"
     - name: Run ci target
       run:  |
-          setx PATH "$env:path;c:\gopath\bin" -m
+          setx PATH "c:\gopath\bin;$env:path" -m
           setx GOPATH "c:\gopath\bin" -m
           $env:GO111MODULE = 'off'; go install -i github.com/securego/gosec/cmd/gosec
           $env:GO111MODULE = 'off'; go install -i github.com/mitchellh/gox
