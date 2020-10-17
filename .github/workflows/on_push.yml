@@ -14,15 +14,18 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+#        os: [windows-latest, ubuntu-latest, macos-latest]
         include:
           - os: windows-latest
             GOPATH: c:\gopath
+          - os: ubuntu-latest
+          - os: macos-latest
     steps:
     - name: Windows - Define and add GOPATH to PATH
       if: ${{ matrix.os == 'windows-latest' }}
       run: |
           setx PATH "$env:path;c:\gopath\bin" -m
+          echo "c:\gopath\bin" >> ${GITHUB_PATH}
     - name: Non Windows - Define and add GOPATH to PATH
       if: ${{ matrix.os != 'windows-latest' }}
       run: |
