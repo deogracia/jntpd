@@ -42,6 +42,7 @@ jobs:
           cd c:\
           go install -i github.com/securego/gosec/cmd/gosec
           go install -i github.com/mitchellh/gox
+          $Env:Path
           cd $GITHUB_WORKSPACE/$checkout_dir
           dir env: || env
           go env
