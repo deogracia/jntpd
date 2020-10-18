@@ -10,7 +10,7 @@ env:
   checkout_dir: "go/src/github.com/deogracia/jntpdn"
 jobs:
   windows_checks:
-    name: windows-lastet - checks & build
+    name: windows-latest - checks & build
     runs-on: windows-latest
     steps:
 #    - name: Windows - Define and add GOPATH to PATH
