@@ -71,4 +71,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: generated executables
-        path: '$GITHUB_WORKSPACE/$checkout_dir/output'
+        path: ${{ github.workspace }}/${{ env.checkout_dir }}/output
