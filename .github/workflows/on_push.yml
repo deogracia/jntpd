@@ -9,10 +9,10 @@ on:
 env:
   checkout_dir: "go/src/github.com/deogracia/jntpdn"
 jobs:
-#  windows_checks:
-#    name: run some checks
-#    runs-on: windows-latest
-#    steps:
+  windows_checks:
+    name: windows-lastet - checks & build
+    runs-on: windows-latest
+    steps:
 #    - name: Windows - Define and add GOPATH to PATH
 #      run: |
 #          setx PATH "$env:path;c:\gopath\bin" -m
@@ -27,20 +27,23 @@ jobs:
 ##          setx PATH "$env:path;c:\gopath\bin" -m
 ##          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
 ##          echo "c:\gopath\bin" >> ${GITHUB_PATH}
-#    - name: Checkout code
-#      uses: actions/checkout@v2
-#      with:
-#        path: "${{env.checkout_dir}}"
-#    - name: Run ci target
-#      run:  |
-#          cd c:\
-#          go install -i github.com/securego/gosec/cmd/gosec
-#          go install -i github.com/mitchellh/gox
-#          $Env:Path
-#          cd $GITHUB_WORKSPACE/$checkout_dir
-#          dir env: || env
-#          go env
-#          make ci
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        path: "${{env.checkout_dir}}"
+    - name: Run ci target
+      run:  |
+          cd c:\
+          go get github.com/securego/gosec/cmd/gosec
+          go get github.com/mitchellh/gox
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          dir env:
+          make ci
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: windows-lastest - generated executables
+        path: ${{ github.workspace }}/${{ env.checkout_dir }}/output
   others-os_checks:
     name: ${{ matrix.os }} - checks & build
     runs-on: ${{ matrix.os }}
