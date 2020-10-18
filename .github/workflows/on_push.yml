@@ -67,3 +67,8 @@ jobs:
       run: |
           cd $GITHUB_WORKSPACE/$checkout_dir
           make build_bsd
+    - name: Archive artefacts
+      uses: actions/upload-artefact@v2
+      with:
+        name: generated executables
+        path: ./output
