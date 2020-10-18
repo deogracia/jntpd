@@ -16,12 +16,14 @@ jobs:
     - name: run gosec
       run: |
           export GOPATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )"
-          export GO111MODULE=off
+          #export GO111MODULE=off
           go get github.com/securego/gosec/cmd/gosec
           PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
           env |sort
-          "$(go env GOPATH)\bin\gosec" version
+          #"$(go env GOPATH)\bin\gosec" version
           gosec version
+          go version
+          go env
       shell: bash
   windows_checks:
     name: windows-latest - checks & build
