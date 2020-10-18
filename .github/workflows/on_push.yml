@@ -63,6 +63,7 @@ jobs:
           cd $GITHUB_WORKSPACE/$checkout_dir
           make ci
     - name: Build BSD artefacts
+      if: ${{ matrix.os == 'ubuntu-latest' }}
       run: |
           cd $GITHUB_WORKSPACE/$checkout_dir
           make build_bsd
