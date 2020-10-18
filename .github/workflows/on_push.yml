@@ -35,7 +35,9 @@ jobs:
       run:  |
           cd c:\
           go get github.com/securego/gosec/cmd/gosec
+          Get-Command gosec
           go get github.com/mitchellh/gox
+          Get-Command gox
           $workspace = Join-Path -Path $Env:GITHUB_WORKSPACE -ChildPath $Env:checkout_dir
           Write-Output $workspace
           cd $workspace
