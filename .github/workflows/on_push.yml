@@ -15,8 +15,8 @@ jobs:
     steps:
     - name: run gosec
       run: |
-          GOPATH=$(go env GOPATH)
-          GO111MODULE=off
+          export GOPATH=$(go env GOPATH)
+          export GO111MODULE=off
           go get github.com/securego/gosec/cmd/gosec
           PATH="c:\gopath\bin:$PATH"
           env |sort
