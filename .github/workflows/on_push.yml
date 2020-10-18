@@ -9,6 +9,15 @@ on:
 env:
   checkout_dir: "go/src/github.com/deogracia/jntpdn"
 jobs:
+  windows_test:
+    name: windows-latest - tests
+    runs-on: windows-latest
+    steps:
+    - name: run gosec
+      run: |
+          go get github.com/securego/gosec/cmd/gosec
+          Get-Command gosec
+          gosec --hep
   windows_checks:
     name: windows-latest - checks & build
     runs-on: windows-latest
