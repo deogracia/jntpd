@@ -29,13 +29,13 @@ jobs:
     name: windows-latest - checks & build
     runs-on: windows-latest
     steps:
-    - name: Define and add GOPATH to PATH
-      run: |
-          $INCLUDE = "c:\gopath\bin"
-          $OLDPATH = [System.Environment]::GetEnvironmentVariable('PATH','machine')
-          $NEWPATH = "$OLDPATH;$INCLUDE"
-          [Environment]::SetEnvironmentVariable("PATH", "$NEWPATH", "Machine")
-          ($env:PATH).split(";")
+#    - name: Define and add GOPATH to PATH
+#      run: |
+#          $INCLUDE = "c:\gopath\bin"
+#          $OLDPATH = [System.Environment]::GetEnvironmentVariable('PATH','machine')
+#          $NEWPATH = "$OLDPATH;$INCLUDE"
+#          [Environment]::SetEnvironmentVariable("PATH", "$NEWPATH", "Machine")
+#          ($env:PATH).split(";")
 #          echo "c:\gopath\bin" >> ${GITHUB_PATH}
 #          ($env:PATH).split(";")
 #          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
@@ -55,19 +55,15 @@ jobs:
       with:
         path: "${{env.checkout_dir}}"
     - name: Run ci target
+      shell: bash
       run:  |
-          ($env:PATH).split(";")
-          cd c:\
           go get github.com/securego/gosec/cmd/gosec
-          Get-Command gosec
+          which gosec
           go get github.com/mitchellh/gox
-          Get-Command gox
-          $workspace = Join-Path -Path $Env:GITHUB_WORKSPACE -ChildPath $Env:checkout_dir
-          Write-Output $workspace
-          cd $workspace
-          dir env:
+          which gox
+          cd $GITHUB_WORKSPACE/$checkout_dir
+          PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
           make ci_windows
-#          setx PATH "$env:path;c:\gopath\bin" -m
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
