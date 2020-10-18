@@ -1,12 +1,13 @@
 OUTPUT="./output"
 SRC=$(shell find . -name "*.go")
 
-.PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security
+.PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
 
 all: clean install_deps security test build
 
 # run tests & build ouput based on runing OS
 ci: clean install_deps security test build_vanilla
+ci_windows: clean install_deps security_w test build_vanilla
 
 output:
 	$(info ***************** Create "output" directory ***********************************)
@@ -20,6 +21,11 @@ clean:
 security:
 	$(info ***************** Security ***********************************)
 	@gosec ./...
+	@echo "[OK] Go security check is done!"
+
+security_w:
+	$(info ***************** Security ***********************************)
+	@gosec .\...
 	@echo "[OK] Go security check is done!"
 
 build: output
