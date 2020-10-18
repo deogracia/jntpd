@@ -57,12 +57,12 @@ jobs:
     - name: Run ci target
       shell: bash
       run:  |
+          PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
           go get github.com/securego/gosec/cmd/gosec
           which gosec
           go get github.com/mitchellh/gox
           which gox
           cd $GITHUB_WORKSPACE/$checkout_dir
-          PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
           make ci_windows
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
