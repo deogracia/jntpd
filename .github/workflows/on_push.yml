@@ -19,6 +19,7 @@ jobs:
           $OLDPATH = [System.Environment]::GetEnvironmentVariable('PATH','machine')
           $NEWPATH = "$OLDPATH;$INCLUDE"
           [Environment]::SetEnvironmentVariable("PATH", "$NEWPATH", "Machine")
+          ($env:PATH).split(";")
 #          echo "c:\gopath\bin" >> ${GITHUB_PATH}
 #          ($env:PATH).split(";")
 #          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
