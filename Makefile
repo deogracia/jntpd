@@ -25,7 +25,7 @@ security:
 
 security_w:
 	$(info ***************** Security ***********************************)
-	@gosec .\...
+	@gosec "./..."
 	@echo "[OK] Go security check is done!"
 
 build: output
