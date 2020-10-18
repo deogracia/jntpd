@@ -15,8 +15,12 @@ jobs:
     steps:
     - name: Define and add GOPATH to PATH
       run: |
-          echo "c:\gopath\bin" >> ${GITHUB_PATH}
-          ($env:PATH).split(";")
+          $INCLUDE = "c:\gopath\bin"
+          $OLDPATH = [System.Environment]::GetEnvironmentVariable('PATH','machine')
+          $NEWPATH = "$OLDPATH;$INCLUDE"
+          [Environment]::SetEnvironmentVariable("PATH", "$NEWPATH", "Machine")
+#          echo "c:\gopath\bin" >> ${GITHUB_PATH}
+#          ($env:PATH).split(";")
 #          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
 #          setx PATH "$env:path;c:\gopath\bin" -m
 #          dir env:
@@ -35,7 +39,6 @@ jobs:
         path: "${{env.checkout_dir}}"
     - name: Run ci target
       run:  |
-          setx PATH "$env:path;c:\gopath\bin" -m
           ($env:PATH).split(";")
           cd c:\
           go get github.com/securego/gosec/cmd/gosec
@@ -47,6 +50,7 @@ jobs:
           cd $workspace
           dir env:
           make ci_windows
+#          setx PATH "$env:path;c:\gopath\bin" -m
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
