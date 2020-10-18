@@ -13,9 +13,9 @@ jobs:
     name: windows-latest - checks & build
     runs-on: windows-latest
     steps:
-    - name: Define and add GOPATH to PATH
-      run: |
-          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
+#    - name: Define and add GOPATH to PATH
+#      run: |
+#          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
 #          setx PATH "$env:path;c:\gopath\bin" -m
 #          $Env:Path
 #          dir env:
@@ -34,6 +34,7 @@ jobs:
         path: "${{env.checkout_dir}}"
     - name: Run ci target
       run:  |
+          setx PATH "$env:path;c:\gopath\bin" -m
           cd c:\
           go get github.com/securego/gosec/cmd/gosec
           Get-Command gosec
