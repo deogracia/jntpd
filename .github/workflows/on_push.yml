@@ -36,6 +36,7 @@ jobs:
     - name: Run ci target
       run:  |
           setx PATH "$env:path;c:\gopath\bin" -m
+          ($env:PATH).split(";")
           cd c:\
           go get github.com/securego/gosec/cmd/gosec
           Get-Command gosec
