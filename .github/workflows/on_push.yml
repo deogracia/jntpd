@@ -42,7 +42,7 @@ jobs:
 #          go env
 #          make ci
   others-os_checks:
-    name: run some checks
+    name: ${{ matrix.os }} - run some checks
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
