@@ -20,7 +20,8 @@ jobs:
           go get github.com/securego/gosec/cmd/gosec
           PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
           env |sort
-          "$(go env GOPATH)\bin\gosec" --help
+          "$(go env GOPATH)\bin\gosec" version
+          gosec version
       shell: bash
   windows_checks:
     name: windows-latest - checks & build
