@@ -13,8 +13,9 @@ jobs:
     name: windows-latest - checks & build
     runs-on: windows-latest
     steps:
-#    - name: Windows - Define and add GOPATH to PATH
-#      run: |
+    - name: Define and add GOPATH to PATH
+      run: |
+          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
 #          setx PATH "$env:path;c:\gopath\bin" -m
 #          $Env:Path
 #          dir env:
