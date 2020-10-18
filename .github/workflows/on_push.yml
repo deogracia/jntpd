@@ -13,11 +13,12 @@ jobs:
     name: windows-latest - checks & build
     runs-on: windows-latest
     steps:
-#    - name: Define and add GOPATH to PATH
-#      run: |
+    - name: Define and add GOPATH to PATH
+      run: |
+          echo "c:\gopath\bin" >> ${GITHUB_PATH}
+          ($env:PATH).split(";")
 #          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
 #          setx PATH "$env:path;c:\gopath\bin" -m
-#          $Env:Path
 #          dir env:
 ##          $AddedLocation ="c:\gopath\bin"
 ##          $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
