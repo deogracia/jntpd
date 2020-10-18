@@ -9,35 +9,43 @@ on:
 env:
   checkout_dir: "go/src/github.com/deogracia/jntpdn"
 jobs:
-  checks:
-    name: run some checks
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [windows-latest]
-#        include:
-#          - os: windows-latest
-#            GOPATH: c:\gopath
-#          - os: ubuntu-latest
-#          - os: macos-latest
-    steps:
-    - name: Windows - Define and add GOPATH to PATH
-      if: ${{ matrix.os == 'windows-latest' }}
-      run: |
-          setx PATH "$env:path;c:\gopath\bin" -m
-          $Env:Path
-          dir env:
-#          $AddedLocation ="c:\gopath\bin"
-#          $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
-#          $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-#          $NewPath= $AddedLocation + ';' + $OldPath
-#          Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
-#          [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\gopath\bin", [EnvironmentVariableTarget]::Machine)
+#  windows_checks:
+#    name: run some checks
+#    runs-on: windows-latest
+#    steps:
+#    - name: Windows - Define and add GOPATH to PATH
+#      run: |
 #          setx PATH "$env:path;c:\gopath\bin" -m
-#          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
-#          echo "c:\gopath\bin" >> ${GITHUB_PATH}
-    - name: Non Windows - Define and add GOPATH to PATH
-      if: ${{ matrix.os != 'windows-latest' }}
+#          $Env:Path
+#          dir env:
+##          $AddedLocation ="c:\gopath\bin"
+##          $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
+##          $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
+##          $NewPath= $AddedLocation + ';' + $OldPath
+##          Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
+##          [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\gopath\bin", [EnvironmentVariableTarget]::Machine)
+##          setx PATH "$env:path;c:\gopath\bin" -m
+##          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
+##          echo "c:\gopath\bin" >> ${GITHUB_PATH}
+#    - name: Checkout code
+#      uses: actions/checkout@v2
+#      with:
+#        path: "${{env.checkout_dir}}"
+#    - name: Run ci target
+#      run:  |
+#          cd c:\
+#          go install -i github.com/securego/gosec/cmd/gosec
+#          go install -i github.com/mitchellh/gox
+#          $Env:Path
+#          cd $GITHUB_WORKSPACE/$checkout_dir
+#          dir env: || env
+#          go env
+#          make ci
+  others-os_checks:
+    name: run some checks
+    runs-on: [ubuntu-latest, macos-latest]
+    steps:
+    - name: Define and add GOPATH to PATH
       run: |
           echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
           echo "${GITHUB_WORKSPACE}/go/bin" >> ${GITHUB_PATH}
@@ -46,14 +54,8 @@ jobs:
       with:
         path: "${{env.checkout_dir}}"
     - name: Run ci target
-      run:  |
-          cd c:\
-          go install -i github.com/securego/gosec/cmd/gosec
-          go install -i github.com/mitchellh/gox
-          $Env:Path
+      run: |
           cd $GITHUB_WORKSPACE/$checkout_dir
-          dir env: || env
-          go env
           make ci
     - name: Build BSD artefacts
       run: |
