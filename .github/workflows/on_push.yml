@@ -58,6 +58,7 @@ jobs:
         path: "${{env.checkout_dir}}"
     - name: Run ci target
       run: |
+          go install -i github.com/securego/gosec/cmd/gosec
           cd $GITHUB_WORKSPACE/$checkout_dir
           make ci
     - name: Build BSD artefacts
