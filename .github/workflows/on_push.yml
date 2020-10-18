@@ -19,6 +19,7 @@ jobs:
           GO111MODULE=off
           go get github.com/securego/gosec/cmd/gosec
           PATH=c:\gopath\bin:$PATH
+          env |sort
           gosec --hep
       shell: bash
   windows_checks:
