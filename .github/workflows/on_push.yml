@@ -18,7 +18,7 @@ jobs:
           GOPATH=$(go env GOPATH)
           GO111MODULE=off
           go get github.com/securego/gosec/cmd/gosec
-          PATH=c:\gopath\bin:$PATH
+          PATH="c:\gopath\bin:$PATH"
           env |sort
           gosec --hep
       shell: bash
