@@ -15,10 +15,10 @@ jobs:
     steps:
     - name: run gosec
       run: |
-          export GOPATH=$(go env GOPATH)
+          export GOPATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )"
           export GO111MODULE=off
           go get github.com/securego/gosec/cmd/gosec
-          PATH="$(go env GOPATH)\bin:$PATH"
+          PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
           env |sort
           "$(go env GOPATH)\bin\gosec" --help
       shell: bash
