@@ -15,9 +15,11 @@ jobs:
     steps:
     - name: run gosec
       run: |
+          GOPATH="c:\gopath"
           go get github.com/securego/gosec/cmd/gosec
-          Get-Command gosec
+          PATH=c:\gopath\bin:$PATH
           gosec --hep
+      shell: bash
   windows_checks:
     name: windows-latest - checks & build
     runs-on: windows-latest
