@@ -70,5 +70,5 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: generated executables
+        name: ${{ matrix.os }} - generated executables
         path: ${{ github.workspace }}/${{ env.checkout_dir }}/output
