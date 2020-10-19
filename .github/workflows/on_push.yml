@@ -30,7 +30,7 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: windows-lastest - generated executables
+        name: windows-latest - generated executables
         path: ${{ github.workspace }}/${{ env.checkout_dir }}/output
 
   others-os_checks:

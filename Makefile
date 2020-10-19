@@ -5,7 +5,7 @@ SRC=$(shell find . -name "*.go")
 
 all: clean install_deps security test build
 
-# run tests & build ouput based on runing OS
+# ci*: run tests & build ouput based on runing OS
 ci: clean install_deps security test build_vanilla
 ci_windows: clean install_deps security_w test build_vanilla
 

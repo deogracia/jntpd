@@ -19,10 +19,11 @@ jntpdn --port 80 --file /where/my/file/is
 * test
 * pull request (or not)
 
-### Development's dependancies
+### Development & build's dependancies
 
+* [goreleaser](https://github.com/goreleaser/goreleaser)
 * [gosec](https://github.com/securego/gosec)
-* [goreleaser](https://github.com/goreleaser/goreleaser) v0.145.0
+* [gox](https://github.com/mitchellh/gox)
 * Make
 
 
