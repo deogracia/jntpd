@@ -1,2 +1,7 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
 * text=auto
+
+# cf. https://github.com/golang/go/issues/9281
+# consider all go files as binary, removing git magic regarding line endings
+# fix gofmt error on windows, since gofmt use LF as EOL
+*.go -text
