@@ -48,7 +48,7 @@ install_deps:
 
 check_fmt:
 	$(info ***************** Check formatting ***********************************)
-	@test -z $(shell gofmt -l $(SRC)) || (gofmt -d $(SRC); exit 1)
+	test -z $(shell gofmt -l $(SRC)) || (gofmt -d $(SRC); exit 1)
 	@echo "[OK] Go code formating"
 
 fmt:
