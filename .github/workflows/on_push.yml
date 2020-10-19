@@ -9,47 +9,10 @@ on:
 env:
   checkout_dir: "go/src/github.com/deogracia/jntpdn"
 jobs:
-  windows_test:
-    name: windows-latest - tests
-    runs-on: windows-latest
-    steps:
-    - name: run gosec
-      run: |
-          export GOPATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )"
-          #export GO111MODULE=off
-          go get github.com/securego/gosec/cmd/gosec
-          PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
-          env |sort
-          #"$(go env GOPATH)\bin\gosec" version
-          gosec version
-          go version
-          go env
-      shell: bash
   windows_checks:
     name: windows-latest - checks & build
     runs-on: windows-latest
     steps:
-#    - name: Define and add GOPATH to PATH
-#      run: |
-#          $INCLUDE = "c:\gopath\bin"
-#          $OLDPATH = [System.Environment]::GetEnvironmentVariable('PATH','machine')
-#          $NEWPATH = "$OLDPATH;$INCLUDE"
-#          [Environment]::SetEnvironmentVariable("PATH", "$NEWPATH", "Machine")
-#          ($env:PATH).split(";")
-#          echo "c:\gopath\bin" >> ${GITHUB_PATH}
-#          ($env:PATH).split(";")
-#          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
-#          setx PATH "$env:path;c:\gopath\bin" -m
-#          dir env:
-##          $AddedLocation ="c:\gopath\bin"
-##          $Reg = "Registry::HKLM\System\CurrentControlSet\Control\Session Manager\Environment"
-##          $OldPath = (Get-ItemProperty -Path "$Reg" -Name PATH).Path
-##          $NewPath= $AddedLocation + ';' + $OldPath
-##          Set-ItemProperty -Path "$Reg" -Name PATH –Value $NewPath
-##          [Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\gopath\bin", [EnvironmentVariableTarget]::Machine)
-##          setx PATH "$env:path;c:\gopath\bin" -m
-##          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> ${GITHUB_ENV}
-##          echo "c:\gopath\bin" >> ${GITHUB_PATH}
     - name: Checkout code
       uses: actions/checkout@v2
       with:
@@ -69,6 +32,7 @@ jobs:
       with:
         name: windows-lastest - generated executables
         path: ${{ github.workspace }}/${{ env.checkout_dir }}/output
+
   others-os_checks:
     name: ${{ matrix.os }} - checks & build
     runs-on: ${{ matrix.os }}
