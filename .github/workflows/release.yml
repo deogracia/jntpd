@@ -17,3 +17,7 @@ jobs:
           args: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  goreportcard:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: creekorful/goreportcard-action@v1.0
