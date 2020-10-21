@@ -1,4 +1,5 @@
-/*
+/*Package cmd heart of cobra
+
 Copyright © 2020 Lionel Félicité <deogracia@free.fr>
 This file is licensed under the BSD 3-Clause Clear License.
 The full text can also be found:
