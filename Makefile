@@ -2,12 +2,13 @@ OUTPUT="./output"
 SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
+.PHONY: lint go_checks
 
-all: clean install_deps security test build
+all: clean install_deps go_checks security test build
 
 # ci*: run tests & build ouput based on runing OS
-ci: clean install_deps security test build_vanilla
-ci_windows: clean install_deps security_w test build_vanilla
+ci: clean install_deps go_checks security test build_vanilla
+ci_windows: clean install_deps go_checks security_w test build_vanilla
 
 output:
 	$(info ***************** Create "output" directory ***********************************)
@@ -20,13 +21,20 @@ clean:
 
 security:
 	$(info ***************** Security ***********************************)
-	@gosec ./...
+	gosec ./...
 	@echo "[OK] Go security check is done!"
 
 security_w:
 	$(info ***************** Security ***********************************)
-	@gosec "./..."
+	gosec "./..."
 	@echo "[OK] Go security check is done!"
+
+lint:
+	$(info ***************** Lint ***********************************)
+	golint -set_exit_status ./...
+	@echo "[OK] Go linting is done!"
+
+go_checks: check_fmt vet lint
 
 build: output
 	make -f build.make all
@@ -43,7 +51,7 @@ test: check_fmt vet
 
 install_deps:
 	$(info ***************** Install dependancies ***********************************)
-	@go get ./...
+	go get ./...
 	@echo "[OK] Go dependancies is get!"
 
 check_fmt:
@@ -57,7 +65,7 @@ fmt:
 
 vet:
 	$(info ***************** Run go vet ***********************************)
-	@go vet ./...
+	go vet ./...
 	@echo "[OK] Go vet is done!"
 
 # vi:syntax=make
