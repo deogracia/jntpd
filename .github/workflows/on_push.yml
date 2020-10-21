@@ -25,6 +25,8 @@ jobs:
           which gosec
           go get github.com/mitchellh/gox
           which gox
+          go get golang.org/x/lint/golint
+          which golint
           cd $GITHUB_WORKSPACE/$checkout_dir
           make ci_windows
     - name: Archive artifacts
@@ -52,6 +54,7 @@ jobs:
       run: |
           go get github.com/securego/gosec/cmd/gosec
           go get github.com/mitchellh/gox
+          go get golang.org/x/lint/golint
           cd $GITHUB_WORKSPACE/$checkout_dir
           make ci
     - name: Build BSD artefacts

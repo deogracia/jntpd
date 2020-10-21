@@ -21,6 +21,7 @@ jntpdn --port 80 --file /where/my/file/is
 
 ### Development & build's dependancies
 
+* [golint](https://github.com/golang/lint)
 * [goreleaser](https://github.com/goreleaser/goreleaser)
 * [gosec](https://github.com/securego/gosec)
 * [gox](https://github.com/mitchellh/gox)
