@@ -2,13 +2,13 @@ OUTPUT="./output"
 SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
-.PHONY: lint go_checks
+.PHONY: lint quality
 
-all: clean install_deps go_checks security test build
+all: clean install_deps quality security test build
 
 # ci*: run tests & build ouput based on runing OS
-ci: clean install_deps go_checks security test build_vanilla
-ci_windows: clean install_deps go_checks security_w test build_vanilla
+ci: clean install_deps quality security test build_vanilla
+ci_windows: clean install_deps quality security_w test build_vanilla
 
 output:
 	$(info ***************** Create "output" directory ***********************************)
@@ -34,7 +34,7 @@ lint:
 	golint -set_exit_status ./...
 	@echo "[OK] Go linting is done!"
 
-go_checks: check_fmt vet lint
+quality: check_fmt vet lint
 
 build: output
 	make -f build.make all
