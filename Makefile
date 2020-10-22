@@ -52,7 +52,7 @@ build_bsd: output
 
 test: check_fmt vet
 	$(info ***************** Run tests ***********************************)
-	echo do some tests!
+	go test -v -count=1  ./...
 
 install_deps:
 	$(info ***************** Install dependancies ***********************************)
