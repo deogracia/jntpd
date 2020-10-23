@@ -23,7 +23,7 @@ changelog:
       - '^docs:'
       - '^test:'
   skip: false
-  sort: asc
+  sort: ''
 checksum:
   name_template: 'checksums.txt'
 release:
