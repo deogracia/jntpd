@@ -1,4 +1,11 @@
 project_name: jntpdn
+archives:
+  - replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
 before:
   hooks:
     - go mod download
@@ -10,22 +17,20 @@ builds:
       - windows
       - darwin
       - freebsd
-archives:
-  - replacements:
-      darwin: Darwin
-      linux: Linux
-      windows: Windows
-      386: i386
-      amd64: x86_64
-checksum:
-  name_template: 'checksums.txt'
-snapshot:
-  name_template: "{{ .Tag }}-next"
 changelog:
-  sort: asc
   filters:
     exclude:
       - '^docs:'
       - '^test:'
+  skip: false
+  sort: ''
+checksum:
+  name_template: 'checksums.txt'
+release:
+  prerelease: auto
+snapshot:
+  name_template: "{{ .Tag }}-next"
 source:
   enabled: true
+  format: 'tar.gz'
+  name_template: '{{ .ProjectName }}-{{ .Version }}'
