@@ -2,7 +2,7 @@ OUTPUT="./output"
 SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
-.PHONY: lint quality gocyclo goimports
+.PHONY: lint quality gocyclo goimports formatcode
 
 all: clean install_deps quality security test build
 
@@ -33,6 +33,9 @@ lint:
 	$(info ***************** Lint ***************************************)
 	golint -set_exit_status ./...
 	@echo "[OK] Go linting is done!"
+
+formatcode: goimports fmt
+	@echo "[OK] formatcode is done!"
 
 gocyclo:
 	$(info ***************** gocyclo ************************************)
