@@ -2,7 +2,7 @@ OUTPUT="./output"
 SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
-.PHONY: lint quality gocyclo
+.PHONY: lint quality gocyclo goimports
 
 all: clean install_deps quality security test build
 
@@ -38,6 +38,11 @@ gocyclo:
 	$(info ***************** gocyclo ************************************)
 	gocyclo -total-short -over 10 .
 	@echo "[OK] gocyclo is done!"
+
+goimports:
+	$(info ***************** goimports ***********************************)
+	goimports -w ./..
+	@echo "[OK] goimpors is done!"
 
 quality: check_fmt vet lint gocyclo
 
