@@ -3,6 +3,7 @@ SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
 .PHONY: lint quality gocyclo goimports formatcode
+.PHONY: format_and_test
 
 all: clean install_deps quality security test build
 
@@ -36,6 +37,8 @@ lint:
 
 formatcode: goimports fmt
 	@echo "[OK] formatcode is done!"
+
+format_and_test: formatcode test
 
 gocyclo:
 	$(info ***************** gocyclo ************************************)
