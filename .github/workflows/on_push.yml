@@ -12,8 +12,9 @@ jobs:
   test_setupgo:
     runs-on: ${{ matrix.os }}
     strategy:
-      go: ['1.14', '1.15']
-      os: ['windows_latest','linux_latest','macos_latest']
+      matrix:
+        go: ['1.14', '1.15']
+        os: ['windows_latest','linux_latest','macos_latest']
     steps:
       - name: setup-go
         uses: actions/setup-go@v1
