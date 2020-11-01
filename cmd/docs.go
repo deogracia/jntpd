@@ -15,6 +15,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/cobra/doc"
 )
 
 // docsCmd represents the docs command
@@ -29,7 +30,7 @@ var docsCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(docsCmd)
 
-	docsCmd.Flags().StringP("dir", "d", "", "Destination directory for docs")
+	docsCmd.Flags().StringP("dir", "d", "./jntpdn-docs", "Destination directory for docs. Default to './jntpdn-docs'")
 
 	// Here you will define your flags and configuration settings.
 
@@ -52,16 +53,20 @@ func docsCommand(cmd *cobra.Command, args []string) error {
 		if dir, err = ioutil.TempDir("", "jntpdn"); err != nil {
 			return err
 		}
+	} else {
+		if os.MkdirAll(dir, 0750) != nil {
+			return err
+		}
 	}
 	return docsAction(os.Stdout, dir)
 }
 
 func docsAction(out io.Writer, dir string) error {
 
-	/*  err := doc.GenerateMarkdownTree(rootCmd, dir)
-	    if err != nil{
-	      return err
-	    }
-	*/
+	err := doc.GenMarkdownTree(rootCmd, dir)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
