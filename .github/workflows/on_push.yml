@@ -27,7 +27,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        go: ['1.14', '1.15']
+        go: ['1.15']
     steps:
       - name: setup-go
         uses: actions/setup-go@v1
