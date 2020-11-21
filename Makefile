@@ -1,4 +1,5 @@
 OUTPUT="./output"
+CMD_OUTPUTS="./jntpdn-docs"
 SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
@@ -33,7 +34,7 @@ output:
 
 clean:
 	$(info ***************** Clean ***********************************)
-	rm -rf $(OUTPUT)
+	rm -rf $(OUTPUT) $(CMD_OUTPUTS)
 	go clean -cache -testcache -modcache
 
 security:
