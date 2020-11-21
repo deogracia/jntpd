@@ -18,34 +18,36 @@ import (
 	"github.com/spf13/cobra/doc"
 )
 
-var dirPath string
+// markdownCmd represents the markdown command
+var markdownCmd = &cobra.Command{
+	Use:   "markdown",
+	Short: "A brief description of your command",
+	Long: `A longer description that spans multiple lines and likely contains examples
+and usage of using your command. For example:
 
-// docsCmd represents the docs command
-var docsCmd = &cobra.Command{
-	Use:   "docs",
-	Short: "Generate documentation",
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		return docsCommand(cmd, args)
+		return markdownDocsCommand(cmd, args)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(docsCmd)
-
-	docsCmd.PersistentFlags().StringVarP(&dirPath, "dir", "d", "./jntpdn-docs", "Destination directory for docs. Default to './jntpdn-docs'")
+	docsCmd.AddCommand(markdownCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// docsCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// markdownCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// docsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// markdownCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
 
-func docsCommand(cmd *cobra.Command, args []string) error {
+func markdownDocsCommand(cmd *cobra.Command, args []string) error {
 	dir, err := cmd.Flags().GetString("dir")
 	if err != nil {
 		return err
@@ -60,11 +62,10 @@ func docsCommand(cmd *cobra.Command, args []string) error {
 			return err
 		}
 	}
-	return docsAction(os.Stdout, dir)
+	return markdownDocsAction(os.Stdout, dir)
 }
 
-func docsAction(out io.Writer, dir string) error {
-
+func markdownDocsAction(out io.Writer, dir string) error {
 	err := doc.GenMarkdownTree(rootCmd, dir)
 	if err != nil {
 		return err
