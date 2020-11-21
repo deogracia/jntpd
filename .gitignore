@@ -14,3 +14,6 @@
 output
 # goreleaser output directory
 dist
+
+# generated docs directroy
+jntpdn-docs
