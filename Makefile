@@ -5,12 +5,28 @@ SRC=$(shell find . -name "*.go")
 .PHONY: lint quality gocyclo goimports formatcode
 .PHONY: format_and_test
 
+# Default task, since it's the first one
 all: clean install_deps quality security test build
+
+## Global targets
 
 # ci*: run tests & build ouput based on runing OS
 ci: clean install_deps quality security test build_vanilla
 ci_windows: clean install_deps quality security_w test build_vanilla
 
+quality: check_fmt vet lint gocyclo
+
+formatcode: goimports fmt
+	@echo "[OK] formatcode is done!"
+
+format_and_test: formatcode test
+
+test: check_fmt vet
+	$(info ***************** Run tests ***********************************)
+	go test -v -count=1  ./...
+
+
+## Specific / unitary targets
 output:
 	$(info ***************** Create "output" directory ***********************************)
 	mkdir $(OUTPUT)
@@ -35,11 +51,6 @@ lint:
 	golint -set_exit_status ./...
 	@echo "[OK] Go linting is done!"
 
-formatcode: goimports fmt
-	@echo "[OK] formatcode is done!"
-
-format_and_test: formatcode test
-
 gocyclo:
 	$(info ***************** gocyclo ************************************)
 	gocyclo -total-short -over 10 .
@@ -50,8 +61,6 @@ goimports:
 	goimports -w ./..
 	@echo "[OK] goimpors is done!"
 
-quality: check_fmt vet lint gocyclo
-
 build: output
 	make -f build.make all
 
@@ -60,10 +69,6 @@ build_vanilla: output
 
 build_bsd: output
 	make -f build.make build_bsd
-
-test: check_fmt vet
-	$(info ***************** Run tests ***********************************)
-	go test -v -count=1  ./...
 
 install_deps:
 	$(info ***************** Install dependancies ***********************************)
