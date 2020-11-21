@@ -23,7 +23,7 @@ jntpdn --port 80 --file /where/my/file/is
 
 * [gocyclo](https://github.com/fzipp/gocyclo)
 * [golint](https://github.com/golang/lint)
-* [goimports](go get golang.org/x/tools/cmd/goimports)
+* [goimports](https://godoc.org/golang.org/x/tools/cmd/goimports)
 * [goreleaser](https://github.com/goreleaser/goreleaser)
 * [gosec](https://github.com/securego/gosec)
 * [gox](https://github.com/mitchellh/gox)
