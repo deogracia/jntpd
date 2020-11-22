@@ -54,7 +54,7 @@ lint:
 
 gocyclo:
 	$(info ***************** gocyclo ************************************)
-	gocyclo -total-short -over 10 .
+	gocyclo -total -avg -over 10 .
 	@echo "[OK] gocyclo is done!"
 
 goimports:
