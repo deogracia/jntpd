@@ -1,5 +1,7 @@
-OUTPUT="./output"
-CMD_OUTPUTS="./jntpdn-docs"
+SHELL=/bin/bash
+OUTPUT=./output
+CMD_OUTPUTS=./jntpdn-docs
+GO_STUFF=$(wildcard coverage.*)
 SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
@@ -24,7 +26,8 @@ format_and_test: formatcode test
 
 test: check_fmt vet
 	$(info ***************** Run tests ***********************************)
-	go test -v -count=1  ./...
+	go test -race -covermode=atomic -coverprofile=coverage.out -v -count=1  ./...
+	go tool cover -html=coverage.out -o coverage.html
 
 
 ## Specific / unitary targets
@@ -34,7 +37,7 @@ output:
 
 clean:
 	$(info ***************** Clean ***********************************)
-	rm -rf $(OUTPUT) $(CMD_OUTPUTS)
+	rm -rf $(OUTPUT) $(CMD_OUTPUTS) ${GO_STUFF}
 	go clean -cache -testcache -modcache
 
 security:
