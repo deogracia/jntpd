@@ -31,36 +31,36 @@ test: check_fmt vet
 
 
 ## Specific / unitary targets
-output:
+output: ## Create "output" directory
 	$(info ***************** Create "output" directory ***********************************)
 	mkdir $(OUTPUT)
 
-clean:
+clean: ## Clean it up!
 	$(info ***************** Clean ***********************************)
 	rm -rf $(OUTPUT) $(CMD_OUTPUTS) ${GO_STUFF}
 	go clean -cache -testcache -modcache
 
-security:
+security: ## Run gosec
 	$(info ***************** Security ***********************************)
 	gosec ./...
 	@echo "[OK] Go security check is done!"
 
-security_w:
+security_w: ## Run gosec on windows
 	$(info ***************** Security ***********************************)
 	gosec "./..."
 	@echo "[OK] Go security check is done!"
 
-lint:
+lint: ## Run go lint
 	$(info ***************** Lint ***************************************)
 	golint -set_exit_status ./...
 	@echo "[OK] Go linting is done!"
 
-gocyclo:
+gocyclo: ## Run gocyclo
 	$(info ***************** gocyclo ************************************)
 	gocyclo -total -avg -over 10 .
 	@echo "[OK] gocyclo is done!"
 
-goimports:
+goimports: ## Run goimports
 	$(info ***************** goimports ***********************************)
 	goimports -w ./..
 	@echo "[OK] goimpors is done!"
@@ -74,23 +74,27 @@ build_vanilla: output
 build_bsd: output
 	make -f build.make build_bsd
 
-install_deps:
+install_deps: ## install go dependancies
 	$(info ***************** Install dependancies ***********************************)
 	go get ./...
 	@echo "[OK] Go dependancies is get!"
 
-check_fmt:
+check_fmt: ## Check go code's format
 	$(info ***************** Check formatting ***********************************)
 	test -z $(shell gofmt -l $(SRC)) || (gofmt -d $(SRC); exit 1)
 	@echo "[OK] Go code formating"
 
-fmt:
+fmt: ## Format go code
 	$(info ***************** Do the formatting ***********************************)
 	gofmt -w $(SRC)
 
-vet:
+vet: ## Run go get
 	$(info ***************** Run go vet ***********************************)
 	go vet ./...
 	@echo "[OK] Go vet is done!"
+
+.PHONY: help
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 # vi:syntax=make
