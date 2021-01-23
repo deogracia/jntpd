@@ -45,7 +45,6 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN}}
-          files: coverage.out
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
