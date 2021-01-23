@@ -1,3 +1,4 @@
+---
 name: Checks on_push
 
 on:
@@ -9,19 +10,6 @@ on:
 env:
   checkout_dir: "go/src/github.com/deogracia/jntpdn"
 jobs:
-#  test_setupgo:
-#    runs-on: ${{ matrix.os }}
-#    strategy:
-#      matrix:
-#        go: ['1.14', '1.15']
-#        os: ['windows-latest','ubuntu-latest','macos-latest']
-#    steps:
-#      - name: setup-go
-#        uses: actions/setup-go@v1
-#        with:
-#          go-version: ${{ matrix.go }}
-#      - name: go version
-#        run: go version
   windows_checks:
     name: windows-latest - checks & build
     runs-on: windows-latest
@@ -41,7 +29,7 @@ jobs:
           path: "${{env.checkout_dir}}"
       - name: Run ci target
         shell: bash
-        run:  |
+        run: |
             PATH="/$(go env GOPATH | sed 's/\\/\//g'| sed 's/://' )/bin":$PATH
             go get github.com/securego/gosec/cmd/gosec
             which gosec
