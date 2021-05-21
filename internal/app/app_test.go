@@ -50,6 +50,7 @@ func TestNewApp(t *testing.T) {
 		}
 	}
 }
+
 func TestShellCompletion(t *testing.T) {
 	var cmd *cobra.Command
 	var app *App
@@ -81,4 +82,11 @@ func TestShellCompletion(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestDocsCmd(t *testing.T) {
+	var app *App
+	app = new(App)
+
+	app.DocsGeneration()
 }

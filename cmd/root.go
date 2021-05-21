@@ -35,6 +35,7 @@ func RootCmd() *cobra.Command {
 	rootCmd.AddCommand(
 
 		completionCmd(),
+		docsCmd(),
 	)
 
 	return rootCmd
