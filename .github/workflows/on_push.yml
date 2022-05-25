@@ -25,8 +25,8 @@ jobs:
           which gosec
           go get github.com/mitchellh/gox
           which gox
-          go get golang.org/x/lint/golint
-          which golint
+          go get github.com/mgechev/revive
+          which revive
           go get github.com/fzipp/gocyclo/cmd/gocyclo
           which gocyclo
           cd $GITHUB_WORKSPACE/$checkout_dir
@@ -56,7 +56,7 @@ jobs:
       run: |
           go get github.com/securego/gosec/cmd/gosec
           go get github.com/mitchellh/gox
-          go get golang.org/x/lint/golint
+          go get github.com/mgechev/revive
           go get github.com/fzipp/gocyclo/cmd/gocyclo
           cd $GITHUB_WORKSPACE/$checkout_dir
           make ci
