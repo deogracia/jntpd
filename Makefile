@@ -31,7 +31,7 @@ security_w:
 
 lint:
 	$(info ***************** Lint ***************************************)
-	golint -set_exit_status ./...
+	revive -set_exit_status ./...
 	@echo "[OK] Go linting is done!"
 
 gocyclo:
