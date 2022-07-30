@@ -55,6 +55,9 @@ func (a *App) ShellCompletion(cmd *cobra.Command, args []string) error {
 }
 
 // DocsGeneration generate documentation in any suported format
+// Default: Generate all supported format
 //func (a *App) DocsGeneration(cmd *cobra.Command, args []string) error {
-func (a *App) DocsGeneration() {
+func (a *App) DocsGeneration(cmd *cobra.Command, args []string) error {
+
+	return nil
 }

@@ -1,4 +1,8 @@
-SHELL=/bin/bash
+ifneq (,$(findstring v3.,v$(MAKE_VERSION)))
+$(info $(yellow)Warning: your version of `make` seems old; your build may fail!$(term-reset))
+endif
+
+SHELL=/usr/bin/env bash
 OUTPUT=./output
 CMD_OUTPUTS=./jntpdn-docs
 GO_STUFF=$(wildcard coverage.*)
@@ -6,7 +10,7 @@ GORELEASER_STUFF=./dist
 SRC=$(shell find . -name "*.go")
 
 .PHONY: all clean ci build build_vanilla build_bsd test check_fmt fmt vet security security_w
-.PHONY: lint quality gocyclo goimports formatcode
+.PHONY: lint quality gocyclo goimports formatcode godoc
 .PHONY: format_and_test showcoverage
 
 # Default task, since it's the first one
@@ -92,6 +96,8 @@ fmt: ## Format go code
 	$(info ***************** Do the formatting ***********************************)
 	gofmt -w $(SRC)
 
+godoc: ## Run godoc
+	godoc -index -index_files="jntpd_godoc_index-file"
 vet: ## Run go get
 	$(call print-target)
 	$(info ***************** Run go vet ***********************************)

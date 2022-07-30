@@ -14,6 +14,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
+/* completionCmd wraps the call to app.ShellCompletion()
+
+ */
 func completionCmd() *cobra.Command {
 
 	a := app.New()

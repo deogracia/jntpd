@@ -13,9 +13,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// RootCmd is a root Cobra command that gets called
-// from the main func.
-// All other sub-commands should be registered here.
+/*RootCmd is a root Cobra command that gets called from the main func.
+
+  All other sub-commands should be registered here.
+*/
 func RootCmd() *cobra.Command {
 
 	var rootCmd = &cobra.Command{

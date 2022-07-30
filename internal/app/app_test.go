@@ -87,6 +87,23 @@ func TestShellCompletion(t *testing.T) {
 func TestDocsCmd(t *testing.T) {
 	var app *App
 	app = new(App)
+	cmd := getCmd()
+	var args []string
 
-	app.DocsGeneration()
+	err := app.DocsGeneration(cmd, args)
+	if err != nil {
+		t.Errorf("Error running DocsGeneration: %s", err)
+	}
 }
+
+//func TestDocsCmdMarkdown(t *testing.T) {
+//	var app *App
+//	app = new(App)
+//	//cmd = getCmd()
+//	//args = new([]string)
+//
+//	err := app.DocsGeneration()
+//	if err != nil {
+//		t.Errorf("Error running DocsGeneration: %s", err)
+//	}
+//}
