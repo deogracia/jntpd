@@ -97,7 +97,9 @@ fmt: ## Format go code
 	gofmt -w $(SRC)
 
 godoc: ## Run godoc
+	$(info Please go to http://localhost:6060 .)
 	godoc -index -index_files="jntpd_godoc_index-file"
+
 vet: ## Run go get
 	$(call print-target)
 	$(info ***************** Run go vet ***********************************)
